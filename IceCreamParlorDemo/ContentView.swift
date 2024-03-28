@@ -9,12 +9,14 @@ import SwiftUI
 
 /// Model
 struct IceCream {
+    /// This is private because we don't want the flavor to be changed directly
+    /// (set) is a way to make a variable read-only for the public, but read-write for the struct
     private(set) var flavor: String
     
+    /// This is a mutating function because it changes the value of the struct
     mutating func setFlavor(_ flavor: String) {
         self.flavor = flavor
     }
-    
     
     init(flavor: String) {
         self.flavor = flavor
@@ -26,6 +28,7 @@ struct IceCream {
 class IceCreamParlor {
     var iceCream: IceCream?
     
+    /// func to reqeuest the IceCream model to change its flavor
     func setFlavor(_ flavor: String) {
         iceCream?.setFlavor(flavor)
     }
@@ -38,6 +41,7 @@ class IceCreamParlor {
 
 /// View
 struct ContentView: View {
+    /// This is an instance of the IceCreamParlor class
     var iceCreamParlor: IceCreamParlor
     
     var body: some View {
@@ -49,6 +53,8 @@ struct ContentView: View {
         }
     }
     
+    /// This is a computed property that returns a view
+    /// This computed property is inside of ContentView so it can access the iceCreamParlor intance
     private var IceCreamMakerView: some View {
         VStack {
             Button {
